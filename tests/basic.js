@@ -19,6 +19,7 @@ import {
   getCurrentStageIndex,
   tagWithCurrentStageIndex,
   tagWithCurrentStageProfile,
+  getItem,
 } from '../lib/k6-utils/1.4.0/index.js'
 
 initContractPlugin(chai)
@@ -84,6 +85,13 @@ function testRandomItem() {
 
   check(randomItem(items), {
     'randomItem works': (item) => items.includes(item),
+  })
+}
+
+function testGetItem() {
+  let items = [1, 2, 3, 4]
+  check(getItem(items, 1), {
+    'get first item': (item) => item === 1
   })
 }
 
